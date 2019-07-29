@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 2019_07_29_000729) do
   create_table "event_participations", force: :cascade do |t|
     t.bigint "athlete_id"
     t.bigint "game_id"
+    t.bigint "event_id"
     t.integer "medal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["athlete_id"], name: "index_event_participations_on_athlete_id"
+    t.index ["event_id"], name: "index_event_participations_on_event_id"
     t.index ["game_id"], name: "index_event_participations_on_game_id"
   end
 
