@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe EventParticipation, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Validations' do
+
+  end
+
+  describe 'Relationships' do
+    it {should belong_to :athlete}
+    it {should belong_to :event}
+    it {should belong_to :game}
+  end
 end
