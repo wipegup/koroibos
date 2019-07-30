@@ -9,7 +9,7 @@ RSpec.describe Athlete, type: :model do
 
   describe 'Instance Methods' do
     before :each do
-      sport = create(:sport)
+      sport, other_sport = create_list(:sport, 2)
       game = create(:game)
       event = create(:event, sport_id: sport.id)
       @athlete = create(:athlete)
@@ -25,6 +25,13 @@ RSpec.describe Athlete, type: :model do
     describe 'total_medals' do
       it 'returns total number of medals won by athlete' do
         expect(@athlete.total_medals).to eq(3)
+      end
+    end
+
+    describe 'sports' do
+      it 'returns list of strings of names of all sports' do
+        expect(@athlete.sports.length).to eq(1)
+        expect(@athlete.sports[0]).to eq("Sport1")
       end
     end
   end
