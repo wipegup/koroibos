@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :game do
-    season { "MyString" }
+    season { "Season" }
     year { 1 }
   end
 end
