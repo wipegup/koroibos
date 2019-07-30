@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :event do
     sport { nil }
-    game { nil }
+    name { "AnEvent" }
   end
 end

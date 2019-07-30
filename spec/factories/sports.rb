@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :sport do
-    name { "MyString" }
+    name { "Sport" }
   end
 end
