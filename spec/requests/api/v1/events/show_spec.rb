@@ -34,7 +34,7 @@ describe 'GET /api/v1/events/:id' do
       expect(response.status).to eq(404)
 
       body = JSON.parse(response.body, symbolize_names: true)
-      expect(body[:message]).to eq("Invalid Parameters")
+      expect(body[:message]).to eq("Invalid Parameter")
     end
   end
 end

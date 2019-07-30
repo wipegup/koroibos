@@ -1,16 +1,16 @@
 class MedalistSerializer
   attr_reader :status
-  def initialize(event)
+  def initialize(event_id)
     @status = 200
-    @event = event
+    @event_id = event_id
   end
 
   def json
-
+    begin
       {
-        event: @event.name,
+        event: event.name,
         medalists:
-          @event.medalists.map do |athlete|
+          event.medalists.map do |athlete|
             {
               name: athlete.name,
               team: athlete.team,
@@ -19,5 +19,16 @@ class MedalistSerializer
             }
           end
       }
+
+    rescue ArgumentError => error
+      @status = 404
+      {message: error.message}
+    end
+  end
+
+  def event
+    event = Event.find_by(id: @event_id)
+    raise ArgumentError, "Invalid Parameter" unless event
+    event
   end
 end
