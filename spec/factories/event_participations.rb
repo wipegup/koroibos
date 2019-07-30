@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :event_participation do
-    athlete { nil }
-    game { nil }
-    event { nil }
+    athlete
+    game
+    event
     medal { 0 }
   end
 end
