@@ -14,9 +14,9 @@ RSpec.describe Athlete, type: :model do
       event = create(:event, sport_id: sport.id)
       @athlete = create(:athlete)
 
-      (1..4).each do
+      (0..3).each do |num|
         create(:event_participation,
-          athlete: @athlete, game: game, event: event, medal: 1
+          athlete: @athlete, game: game, event: event, medal: num
         )
       end
 
@@ -24,7 +24,7 @@ RSpec.describe Athlete, type: :model do
 
     describe 'total_medals' do
       it 'returns total number of medals won by athlete' do
-        expect(@athlete.total_meals).to eq(4)
+        expect(@athlete.total_medals).to eq(3)
       end
     end
   end

@@ -5,6 +5,10 @@ class Athlete < ApplicationRecord
 
   enum sex: ["F","M"]
 
+  def total_medals
+      event_participations.where.not(medal: "NA").count
+  end
+
   def self.age_order(direction, limit)
     order(age: direction).limit(limit)
   end
