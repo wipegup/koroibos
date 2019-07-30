@@ -7,6 +7,28 @@ RSpec.describe Athlete, type: :model do
     it { should have_many(:games).through(:event_participations) }
   end
 
+  describe 'Instance Methods' do
+    before :each do
+      sport = create(:sport)
+      game = create(:game)
+      event = create(:event, sport_id: sport.id)
+      @athlete = create(:athlete)
+
+      (1..4).each do
+        create(:event_participation,
+          athlete: @athlete, game: game, event: event, medal: 1
+        )
+      end
+
+    end
+
+    describe 'total_medals' do
+      it 'returns total number of medals won by athlete' do
+        expect(@athlete.total_meals).to eq(4)
+      end
+    end
+  end
+
   describe 'Class Methods' do
     before :each do
       (1..4).each do |num|
