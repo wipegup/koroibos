@@ -30,7 +30,8 @@ RSpec.describe Event, type: :model do
         medalists.each do |medalist|
           expect(medalist.id).not_to eq(nothing.id)
           expect(medalist.id).not_to eq(other_athlete.id)
-
+          expect(medalist.medal).not_to eq('NA')
+          expect(medalist.medal).not_to be(nil)
         end
       end
     end
