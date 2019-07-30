@@ -51,6 +51,14 @@ describe 'GET api/v1/olympians', type: :request do
       olympian = olympians[0]
       expect(olympian[:age]).to eq(@athletes[0].age)
     end
+
+    it 'returns 404 if invalid paramter given' do
+      get '/api/v1/olympians?age=best'
+      expect(response.status).to eq(404)
+      body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(body[:message]).to eq("Invalid Parameter")
+    end
   end
 
 end
