@@ -6,6 +6,8 @@ class Event < ApplicationRecord
 
 
   def medalists
-    athletes.where.not(event_participations:{medal:"NA"})
+    athletes
+      .where.not(event_participations:{medal:"NA"})
+      .select("event_participations.medal as medal, athletes.*")
   end
 end
