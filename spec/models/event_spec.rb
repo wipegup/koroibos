@@ -19,7 +19,7 @@ RSpec.describe Event, type: :model do
         other_athlete = create(:athlete)
         event = create(:event)
         participating_athletes.each_with_index do |athlete, medal|
-          create(:event_participation, athlete:athlete, medal:medal)
+          create(:event_participation, athlete:athlete, medal:medal, event:event)
         end
 
         nothing, gold, silver, bronze = participating_athletes

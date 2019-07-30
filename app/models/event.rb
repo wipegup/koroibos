@@ -4,4 +4,8 @@ class Event < ApplicationRecord
   has_many :athletes, through: :event_participations
   has_many :games, through: :event_participations
 
+
+  def medalists
+    athletes.where.not(event_participations:{medal:"NA"})
+  end
 end
