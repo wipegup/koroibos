@@ -5,6 +5,6 @@ FactoryBot.define do
     height { 1 }
     weight { 1 }
     team { "MyString" }
-    sport { nil }
+    age { 1 }
   end
 end
