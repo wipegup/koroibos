@@ -4,4 +4,8 @@ class Athlete < ApplicationRecord
   has_many :games, through: :event_participations
 
   enum sex: ["F","M"]
+
+  def self.age_order(direction, limit)
+    order(age: direction).limit(limit)
+  end
 end
