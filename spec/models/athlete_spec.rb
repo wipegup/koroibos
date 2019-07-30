@@ -39,8 +39,18 @@ RSpec.describe Athlete, type: :model do
     end
 
     describe 'avg_weight' do
-      it 'With an argument of "F" or "M" returns average weight of those athletes'
-      it 'Without an argument returns average weight of all athletes'
+      it 'With an argument of "F" or "M" returns average weight of those athletes' do
+        m_average = Athlete.avg_weight(:M)
+        f_average = Athlete.avg_weight(:F)
+
+        expect(m_average).to eq(2)
+        expect(f_average).to eq(3)
+      end
+      it 'Without an argument returns average weight of all athletes' do
+        all_average = Athlete.avg_weight
+
+        expect(all_average).to eq(7.5)
+      end
     end
 
     describe 'avg_age' do
