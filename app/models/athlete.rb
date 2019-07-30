@@ -10,12 +10,21 @@ class Athlete < ApplicationRecord
   end
 
   def self.avg_weight(sex = nil)
-    if sex
-       athletes = Athlete.where(sex:sex)
-    else
-      athletes = Athlete.all
-    end
-
+    athletes = athletes_by_sex(sex)
     athletes.average(:weight)
   end
+
+  def self.avg_age(sex = nil)
+    athletes = athletes_by_sex(sex)
+    athletes.average(:age)
+  end
+
+  def self.athletes_by_sex(sex)
+    if sex
+      return Athlete.where(sex:sex)
+    else
+      return Athlete.all
+    end
+  end
+
 end
