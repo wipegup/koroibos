@@ -5,6 +5,6 @@ FactoryBot.define do
     height { 1 }
     weight { 1 }
     team { "MyString" }
-    age { 1 }
+    sequence(:age) { |n| n}
   end
 end

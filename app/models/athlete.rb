@@ -6,7 +6,11 @@ class Athlete < ApplicationRecord
   enum sex: ["F","M"]
 
   def total_medals
-      event_participations.where.not(medal: "NA").count
+    event_participations.where.not(medal: "NA").count
+  end
+
+  def sports
+    events.joins(:sport).distinct.pluck("sports.name")
   end
 
   def self.age_order(direction, limit)
