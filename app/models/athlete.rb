@@ -8,4 +8,14 @@ class Athlete < ApplicationRecord
   def self.age_order(direction, limit)
     order(age: direction).limit(limit)
   end
+
+  def self.avg_weight(sex = nil)
+    if sex
+       athletes = Athlete.where(sex:sex)
+    else
+      athletes = Athlete.all
+    end
+
+    athletes.average(:weight)
+  end
 end

@@ -49,7 +49,7 @@ RSpec.describe Athlete, type: :model do
       it 'Without an argument returns average weight of all athletes' do
         all_average = Athlete.avg_weight
 
-        expect(all_average).to eq(7.5)
+        expect(all_average).to eq(2.5)
       end
     end
 
