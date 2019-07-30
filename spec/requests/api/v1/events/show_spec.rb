@@ -27,7 +27,14 @@ describe 'GET /api/v1/events/:id' do
         expect(medalist[:medal]).not_to be(nil)
         expect(medalist[:medal]).not_to eq("NA")
       end
+    end
 
+    it 'returns an error if invalid event_id' do
+      get "/api/v1/events/-1/medalists"
+      expect(response.status).to eq(404)
+
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:message]).to eq("Invalid Parameters")
     end
   end
 end
