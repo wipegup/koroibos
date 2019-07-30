@@ -9,9 +9,9 @@ RSpec.describe Athlete, type: :model do
 
   describe 'Instance Methods' do
     before :each do
-      sport, other_sport = create_list(:sport, 2)
+      @sport, other_sport = create_list(:sport, 2)
       game = create(:game)
-      event = create(:event, sport_id: sport.id)
+      event = create(:event, sport_id: @sport.id)
       @athlete = create(:athlete)
 
       (0..3).each do |num|
@@ -31,7 +31,7 @@ RSpec.describe Athlete, type: :model do
     describe 'sports' do
       it 'returns list of strings of names of all sports' do
         expect(@athlete.sports.length).to eq(1)
-        expect(@athlete.sports[0]).to eq("Sport1")
+        expect(@athlete.sports[0]).to eq(@sport.name)
       end
     end
   end
