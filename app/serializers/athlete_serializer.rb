@@ -1,22 +1,31 @@
 class AthleteSerializer
+  attr_reader :status
   def initialize(filters)
     @filters = filters
+    @status = 200
   end
 
   def json
-    {
-      olympians:
-        athletes.map do |athlete|
-          {
-            name: athlete.name,
-            age: athlete.age,
-            team: athlete.team,
-            sports: athlete.sports,
-            total_medals_won: athlete.total_medals,
-          }
-        end,
+    begin
+      {
+        olympians:
+          athletes.map do |athlete|
+            {
+              name: athlete.name,
+              age: athlete.age,
+              team: athlete.team,
+              sports: athlete.sports,
+              total_medals_won: athlete.total_medals,
+            }
+          end,
 
-  }
+      }
+
+    rescue ArgumentError => error
+      @status = 404
+      {message: error.message}
+    end
+
   end
 
   private
@@ -37,6 +46,8 @@ class AthleteSerializer
       athletes = athletes.age_order(:asc, 1)
     elsif age_filter == "oldest"
       athletes = athletes.age_order(:desc, 1)
+    else
+      raise ArgumentError, "Invalid Parameter"
     end
     athletes
   end
