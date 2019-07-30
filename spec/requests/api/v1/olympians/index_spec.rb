@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe 'GET api/v1/olympians', type: :request do
+
+  before :each do
+    athletes = create_list(:athlete, 5)
+    athletes.each do |athlete|
+      create(:event_participation, athlete: athlete)
+    end
+  end
+
   describe 'without query parameters' do
     it 'returns status 200' do
       get '/api/v1/olympians'
@@ -21,7 +29,7 @@ describe 'GET api/v1/olympians', type: :request do
         expect(olympian[:name]).not_to be(nil)
         expect(olympian[:age]).not_to be(nil)
         expect(olympian[:team]).not_to be(nil)
-        expect(olympian[:sport]).not_to be(nil)
+        expect(olympian[:sports]).not_to be(nil)
         expect(olympian[:total_medals_won]).not_to be(nil)
       end
     end
