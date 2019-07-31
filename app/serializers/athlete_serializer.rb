@@ -14,10 +14,10 @@ class AthleteSerializer
               name: athlete.name,
               age: athlete.age,
               team: athlete.team,
-              sports: athlete.sports,
-              total_medals_won: athlete.total_medals,
+              sports: athlete.sport_name,
+              total_medals_won: athlete.medal_count,
             }
-          end,
+          end
 
       }
 
@@ -31,7 +31,7 @@ class AthleteSerializer
   private
 
   def athletes
-    current_selection = Athlete.all
+    current_selection = Athlete.full_athlete_info
     if @filters.keys.length != 0
       if @filters[:age]
         current_selection = filter_age(current_selection, @filters[:age])
