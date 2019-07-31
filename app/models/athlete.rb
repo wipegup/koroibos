@@ -5,6 +5,13 @@ class Athlete < ApplicationRecord
 
   enum sex: ["F","M"]
 
+  def self.full_athlete_info
+    joins(events: :sport)
+      .group("athletes.id").group("sports.name")
+      .select("athletes.name, athletes.age, athletes.team, sports.name as sport_name, COUNT(case when event_participations.medal != 0 then 1 else null end) as medal_count")
+      .order("medal_count")
+  end
+
   def total_medals
     event_participations.where.not(medal: "NA").count
   end
